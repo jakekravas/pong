@@ -14,6 +14,14 @@ function update(time) {
     ball.update(delta, [playerPaddle.rect(), computerPaddle.rect()])
     computerPaddle.update(delta, ball.y)
 
+    // accesses root
+    const hue = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue('--hue')
+    )
+
+    // change background color over time
+    document.documentElement.style.setProperty('--hue', hue + delta * .01)
+
     if (isLose()) handleLose()
   }
   lastTime = time
